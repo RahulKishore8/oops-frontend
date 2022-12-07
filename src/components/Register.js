@@ -14,7 +14,7 @@ const Register = () => {
     const location = useLocation();
 
     const REGISTER_URL = "/api/user/register"
-
+    
     const handleSubmit = () => {
         try {
             const response = axios.post(REGISTER_URL,
