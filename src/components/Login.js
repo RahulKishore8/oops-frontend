@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from 'react';
 import useAuth from '../hooks/useAuth';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import qs from "qs"
+import "../css/register.css"
 
 import axios from '../api/axios';
 const LOGIN_URL = '/api/user/login';
@@ -63,12 +64,21 @@ const Login = () => {
 
     return (
 
-        <section>
+        <div className="reglogin">
             <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
-            <h1>Sign In</h1>
-            <form onSubmit={handleSubmit}>
+      <div>
+        <title>Login</title>
+        <link rel="stylesheet" href="login.css" />
+        <div className="cover">
+          <div className="form-box">
+            <div className="button-box">
+              <div id="btn" />
+              <button type="button" className="toggle-btn">Login</button>
+            </div>
+            <form className="input-group" id = "login" onSubmit={handleSubmit}>
                 <label htmlFor="emailID">Email ID:</label>
                 <input
+                    className="input-field"
                     type="text"
                     id="emailID"
                     ref={userRef}
@@ -80,21 +90,20 @@ const Login = () => {
 
                 <label htmlFor="password">Password:</label>
                 <input
+                    className="input-field"
                     type="password"
                     id="password"
                     onChange={(e) => setPwd(e.target.value)}
                     value={pwd}
                     required
                 />
-                <button>Sign In</button>
+                <button type = "submit" className = "submit-btn">Sign In</button>
             </form>
-            <p>
-                Need an Account?<br />
-                <span className="line">
-                    <Link to="/register">Sign Up</Link>
-                </span>
-            </p>
-        </section>
+          </div>
+        </div>
+      </div>
+    
+        </div>
 
     )
 }

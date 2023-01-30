@@ -10,6 +10,12 @@ import { Routes, Route } from 'react-router-dom';
 import Products from './components/Products';
 import Wallet from './components/Wallet'
 import CartPage from './components/CartPage';
+import Orders from './components/Orders';
+import Manager from './components/Manager';
+import Category from './components/Category';
+import SearchProducts from './components/SearchProducts';
+import Account from './components/Account';
+import Report from './components/Report';
 
 
 const ROLES = {
@@ -33,28 +39,24 @@ function App() {
         {/* we want to protect these routes */}
         <Route element={<RequireAuth allowedRoles={[ROLES.Customer]} />}>
           <Route path="/" element={<Home />} />
-        </Route>
-        <Route element={<RequireAuth allowedRoles={[ROLES.Customer]} />}>
+          <Route path="/orders" element={<Orders />} /> 
           <Route path="/products" element={<Products />} />
-        </Route>
-        <Route element={<RequireAuth allowedRoles={[ROLES.Customer]} />}>
           <Route path="/cart" element={<CartPage />} />
-        </Route>
-        <Route element={<RequireAuth allowedRoles={[ROLES.Customer]} />}>
           <Route path="/wallet" element={<Wallet />} />
+          <Route path = "/category/:c" element = {<Category />} />
+          <Route path = "/search/:searchString" element = {<SearchProducts />} />
+          <Route path = "/account" element = {<Account />} />
         </Route>
         <Route element={<RequireAuth allowedRoles={[ROLES.Manager]} />}>
-          {/* <Route path="editor" element={<Editor />} /> */}
+          <Route path="/manager" element={<Manager />} />
         </Route>
 
 
         <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
-          <Route path="admin" element={<Admin />} />
+          <Route path= "/admin" element={<Admin />} />
+          <Route path = "/report" element = {<Report />} />
         </Route>
 
-        <Route element={<RequireAuth allowedRoles={[ROLES.Customer]} />}>
-          {/* <Route path="lounge" element={<Lounge />} /> */}
-        </Route>
 
         {/* catch all */}
         <Route path="*" element={<Missing />} />

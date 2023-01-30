@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import axios from '../api/axios';
 import { Link } from "react-router-dom";
 import { useNavigate, useLocation } from "react-router-dom";
+import "../css/register.css"
 
 const Register = () => {
     const [username, setUsername] = useState('');
@@ -43,22 +44,32 @@ const Register = () => {
     }
 
     return(
-            <div>
+            <div className="reglogin">
             {success ? (
                 <section>
                     <h1>Success!</h1>
                     <p>
-                        <a href="#">Sign In</a>
+                        <button type = "button" className = "toggle-btn"><Link to = "/login">Sign In</Link></button>
                     </p>
                 </section>
             ) : (
-                <form onSubmit={handleSubmit}>
-                    <input type="text" class="input-field" onChange={(e) => setUsername(e.target.value)} placeholder="Username" required />
-                    <input type="email" class="input-field" onChange={(e) => setEmailID(e.target.value)} placeholder="Email ID" required />
-                    <input type="password" class="input-field" onChange={(e) => setPassword(e.target.value)} placeholder="Password" required />
-                    <input type="tel" class="input-field" onChange={(e) => setPhoneNumber(e.target.value)} placeholder="Phone Number" required />
-                    <button type="submit" class="submit-btn">Register</button>
+    
+                <div className = "cover">
+                <div className = "form-box">
+                <div class="button-box">
+                    <div id="btn"></div>
+                    <button type="button" className="toggle-btn">Register</button>
+                </div>
+                <form className = "input-group" onSubmit={handleSubmit}>
+                    <input type="text" className="input-field" onChange={(e) => setUsername(e.target.value)} placeholder="Username" required />
+                    <input type="email" className="input-field" onChange={(e) => setEmailID(e.target.value)} placeholder="Email ID" required />
+                    <input type="password" className="input-field" onChange={(e) => setPassword(e.target.value)} placeholder="Password" required />
+                    <input type="tel" className="input-field" onChange={(e) => setPhoneNumber(e.target.value)} placeholder="Phone Number" required />
+                    <button type="submit" className="submit-btn">Register</button>
                 </form>
+                </div>
+                </div>
+  
             )}
             </div>
     )

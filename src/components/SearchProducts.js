@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
+import "../css/products.css"
 
 const INCREMENT_CART_URL = "/api/user/cart/increment";
 
-function Products() {
+function SearchProducts() {
     const [products, setProducts] = useState([]);
     const axiosPrivate = useAxiosPrivate();
     const navigate = useNavigate();
     const location = useLocation();
+
+    const searchString = useParams().searchString;
 
     const handleAdd = (productID) =>{
         try{
@@ -30,11 +33,13 @@ function Products() {
         }
     }
 
-
     useEffect( () => {
         try{
-            axiosPrivate('/api/product/all', { 
+            axiosPrivate('/api/product/search', { 
                 method : 'GET',
+                params: {
+                    "searchString" : searchString
+                }
             })
                 .then(res => {
                     console.log(res)
@@ -49,19 +54,26 @@ function Products() {
     }, [])
 
     return (
-        <div>
+        <div className="product-container">
             <ul>
                 {
-                    products.map(product => <div>
-                        <li key = {product.id}>{product.productName}</li>
-                        <p>{product.price}</p>
-                        <p>{product.categoryName}</p>
-                        <button id = {product.id} onClick = {() => handleAdd(product.id)}>Add to cart</button>
+                    products.map(product =>
+                     <div className="product-box">
+                        {/* <img alt="" src=""/> */}
+                        {/* <li key = {product.id}>{product.productName}</li> */}
+                        <strong key = {product.id}>{product.productName}</strong>
+                        <p className="category">{product.categoryName}</p>
+                        <p className="price"> {product.price}</p>
+                        
+                        <button className="cart-btn" id = {product.id} onClick = {() => handleAdd(product.id)}>Add to cart</button>
+
                     </div>)
+
+                    
                 }
             </ul>
         </div>
     )
 }
 
-export default Products
+export default SearchProducts

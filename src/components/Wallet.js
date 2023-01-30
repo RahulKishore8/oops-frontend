@@ -63,7 +63,7 @@ function Wallet(){
         //     </form>
         // </div>
 
-        <div>
+        <div className="wallet">
         <title> Wallet page </title>
         <link rel="stylesheet" href="wallet.css" />
         <div className="cover">
@@ -74,8 +74,7 @@ function Wallet(){
                 <button type className="toggle-btn">WALLET</button>
               </div>
               <form id="wallet" className="input-group" onSubmit={handleSubmit}>
-                <h2>Avaible balance: <span>{"₹" + walletAmount}</span>
-                </h2>
+                <h2>Balance: {"₹" + walletAmount}</h2>
                 <input type="text" className="input-field" onChange={(e) => setAdddedAmount(e.target.value)} placeholder="Add amount" />
                 <button type="submit" className="submit-btn">ADD</button>
               </form>

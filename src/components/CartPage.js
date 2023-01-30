@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { useNavigate, useLocation } from "react-router-dom";
-import CartItem from "./CartItem";
+import "../css/cartpage.css";
 
 const GET_CART_URL = "/api/user/get-cart";
 const INCREMENT_CART_URL = "/api/user/cart/increment";
@@ -10,6 +10,7 @@ const ORDER_URL = "/api/user/place-order";
 function CartPage(){
     const [cartItems, setCartItems] = useState([]);
     const [update, setUpdate] = useState(0);
+    const [cartTotal, setCartTotal] = useState(0);
     const axiosPrivate = useAxiosPrivate();
     const navigate = useNavigate();
     const location = useLocation();
@@ -21,7 +22,8 @@ function CartPage(){
             })
                 .then(res => {
                     console.log(res.data);
-                    setCartItems(res.data);
+                    setCartItems(res.data.cart);
+                    setCartTotal(res.data.price);
                 })
                 .catch()
         }catch(e){
@@ -84,23 +86,52 @@ function CartPage(){
 
     if(cartItems.length === 0){
         return(
-            <div>
+            <div className="cart">
                 <p>Empty cart</p>
             </div>
         )
     }else{
         return (
-            <div>
+            <div className="cart">
+            <div className="CartContainer">
+            <div className="Header">
+                <h3 className="Heading">Shopping Cart</h3>
+            </div>
            { cartItems.map(item => <div key = {item.product.id}>
-            <li key = {item.id}>{item.product.productName}</li>
-            <p>{item.product.price}</p>
-            <p>{item.product.price * item.quantity}</p>
-            <p>{item.quantity}</p>
-            <button id = {item.product.id} onClick = {() => handleAdd(item.product.id)}>+</button>
-            <button id = {item.product.id} onClick = {() => handleRemove(item.product.id)}>-</button>
+            <div className="Cart-Items">
+            <div className="image-box">
+                <img src={item.product.imageURL} alt = {item.product.productName} style={{height: '120px'}} />
+            </div>
+            <div className="about">
+                <h3 className="title">{item.product.productName}</h3>
+            </div>
+            <div className="counter">
+            <div className="btn"><button id = {item.product.id} onClick = {() => handleRemove(item.product.id)}>-</button></div>
+            
+            <div className="count">{item.quantity}</div>
+            <div className="btn"><button id = {item.product.id} onClick = {() => handleAdd(item.product.id)}>+</button></div>
+            </div>
+            <div className="prices">
+            <div className="amount">{"₹" + item.product.price}</div>
+            </div>
+
+        </div>
         </div>
         )}
-        <button onClick = {() => handleOrder()}>Place Order</button>
+        <hr />
+        </div>
+        <div className="checkout">
+        <div className="total">
+          <div>
+            <div className="total-amount">Total</div>
+            
+          </div>
+          <div className="total-amount">{"₹" + cartTotal}</div>
+        </div>
+      </div>
+        
+
+        <button class ="button" onClick = {() => handleOrder()}>Place Order</button>
         </div>
         )
     }

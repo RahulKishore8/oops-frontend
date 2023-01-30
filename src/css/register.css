@@ -1,22 +1,21 @@
-.wallet *{
+.reglogin *{
     margin:0;
     padding:0;
     font-family: sans-serif;
 }
 
-.wallet .cover{
+.reglogin .cover{
     height: 100%;
     width: 100%;
-    background-color: #ecf7ee ;
-    
     /* background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0, 0, 0, 0.4)),url(image.jpeg); */
+    background:  #ecf7ee;
+    
     background-position: center;
     background-size: cover;
-    position: absolute;  
-    
+    position: absolute;
 }
 
-.wallet .form-box{
+.reglogin .form-box{
     width: 360px;
     height: 480px;
     position: relative;
@@ -26,22 +25,19 @@
     padding: 5px;
     overflow: hidden;
     border-radius: 40px;
-
 }
 
-
-.wallet .title-box{
+.reglogin .button-box{
     width: 100px;
     height: 35px auto;
     position: relative;
+    margin-left: 45px;
     top: 25px;
     left: 80px;
-    box-shadow: 0 0 20px 9px #ff61241f;
     border-radius: 100px;
-   margin-left: 50px ;
 }
 
-.wallet .toggle-btn{
+.reglogin .toggle-btn{
     padding: 10px 30px;
     cursor: pointer;
     background:transparent ;
@@ -50,10 +46,10 @@
     position: relative;   
 }
 
-.wallet #btn{
+.reglogin #btn{
     top: 0;
     left: 0;
-    position: absolute;
+    position:absolute ;
     width: 100px;
     height: 100%;
     background: linear-gradient(to right, #0f9031, #0fc23e);
@@ -61,19 +57,19 @@
     transition: 0.5s;
 }
 
-.input-group{
+.reglogin .input-group{
     top: 140px;
     position: absolute;
+    margin-left: 10px;
     width: 280px;
     transition: 0.5s;
-    margin-left: 50px;
 }
-.input-field{
-    font-size: larger;
+
+.reglogin .input-field{
     width: 100%;
     padding: 10px 0;
     margin: 5px 0;
-    margin-top: 10px;
+    margin-left: 35px;
     border-top: 0;
     border-left: 0;
     border-right: 0;
@@ -82,17 +78,23 @@
     background: transparent;
 }
 
-span{
-    color: rgb(0, 0, 0);
-    font-size: 15px;
-    margin-top: 8px;
-    margin-left: 5px;
+.reglogin .check-box{
+    margin: 30px 10px 30px 0;
+}
+
+.reglogin span{
+    color: #777;
+    font-size: 12px;
+    margin: auto;
+    margin-top: 29px;
     position: absolute;
 }
 
-.submit-btn{
+.reglogin .submit-btn{
     width: 85%;
     padding: 10px 30px;
+    margin-top: 15px;
+    margin-left: 55px;
     cursor: pointer;
     display: block;
     margin-top: 15px;
@@ -102,4 +104,3 @@ span{
     outline: none;
     border-radius: 30px;
 }
-
